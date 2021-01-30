@@ -3,6 +3,7 @@
 #include <string>
 
 struct Scip;
+struct SCIP_Var;
 
 namespace scip {
 

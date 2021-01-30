@@ -24,7 +24,7 @@ class Constraint {
 
   const std::list<Contribution>& get_contributions_(void) const {
     return contributions_;
-  };
-}
+  }
+};
 
 }  // namespace scip
