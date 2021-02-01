@@ -7,8 +7,7 @@ namespace scip {
 
 void Constraint::add_contribution(double coefficient,
                                   const Variable& variable) {
-  Contribution c{coefficient, variable};
-  contributions_.push_back(c);
+  contributions_.push_back({coefficient, variable});
 }
 
 Constraint::Constraint(double lhs, double rhs) : lhs_(lhs), rhs_(rhs) {

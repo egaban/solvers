@@ -2,6 +2,8 @@
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Variable.h>
 
+#include "Exception.h"
+
 namespace scip {
 
 static SCIP_Vartype convert_to_scip_vartype(VariableType t) {
@@ -12,6 +14,8 @@ static SCIP_Vartype convert_to_scip_vartype(VariableType t) {
       return SCIP_VARTYPE_INTEGER;
     case VariableType::Real:
       return SCIP_VARTYPE_CONTINUOUS;
+    default:
+      throw ScipException("Illegal VariableType");
   }
 }
 
