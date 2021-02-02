@@ -15,7 +15,7 @@ void Constraint::add_contribution(double coefficient,
 Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
                        double rhs)
     : lhs_(lhs), rhs_(rhs), scip_ptr_(nullptr) {
-  assert(are_real_equals(lhs, rhs));
+  assert(is_leq(lhs, rhs));
 
   auto retcode = SCIPcreateConsBasicLinear(scip, &scip_ptr_, name.c_str(), 0,
                                            nullptr, nullptr, lhs, rhs);
