@@ -1,5 +1,5 @@
 /**
- * @file Core.h
+ * @file Common.h
  * @author Enzo Gaban
  * @brief Some common definitions
  *
