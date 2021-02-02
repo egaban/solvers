@@ -31,9 +31,10 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
 
   auto scip_vartype = convert_to_scip_vartype(type);
 
-  SCIPcreateVarBasic(scip, &scip_var_ptr_, name.c_str(), lb_, ub_, obj_,
-                     scip_vartype);
-  SCIPaddVar(scip, scip_var_ptr_);
+  CHECK_RETCODE(SCIPcreateVarBasic(scip, &scip_var_ptr_, name.c_str(), lb_, ub_,
+                                   obj_, scip_vartype));
+
+  CHECK_RETCODE(SCIPaddVar(scip, scip_var_ptr_));
 }
 
 }  // namespace scip

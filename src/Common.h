@@ -8,8 +8,13 @@
 #pragma once
 
 #include <assert.h>
-
 #include <scip_cpp/Exception.h>
+
+#define CHECK_RETCODE(f)                                            \
+  {                                                                 \
+    SCIP_RETCODE _retcode = f;                                      \
+    if (_retcode != SCIP_OKAY) throw BadRetcodeException(_retcode); \
+  }
 
 namespace scip {
 

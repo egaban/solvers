@@ -16,12 +16,8 @@ Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
     : lhs_(lhs), rhs_(rhs), scip_ptr_(nullptr) {
   assert(is_leq(lhs, rhs));
 
-  auto retcode = SCIPcreateConsBasicLinear(scip, &scip_ptr_, name.c_str(), 0,
-                                           nullptr, nullptr, lhs, rhs);
-
-  if (retcode != SCIP_OKAY) {
-    throw BadRetcodeException(retcode);
-  }
+  CHECK_RETCODE(SCIPcreateConsBasicLinear(scip, &scip_ptr_, name.c_str(), 0,
+                                          nullptr, nullptr, lhs, rhs));
 }
 
 }  // namespace scip
