@@ -19,7 +19,7 @@ class Constraint {
   double lhs_;
   double rhs_;
   std::list<Contribution> contributions_;
-  SCIP_Cons* scip_ptr_;
+  SCIP_Cons* scip_cons_ptr_;
 
  public:
   Constraint(Scip* scip, const std::string& name, double lhs, double rhs);
