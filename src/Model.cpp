@@ -27,6 +27,8 @@ void Model::create_variable(VariableType type, double objective_value,
 Model::~Model() {
   for (auto& ptr : constraints_) delete ptr.second;
   for (auto& ptr : variables_) delete ptr.second;
+
+  SCIPfree(&scip_ptr_);
 }
 
 }  // namespace scip
