@@ -7,11 +7,8 @@
 namespace scip {
 
 Model::Model(void) : scip_ptr_(nullptr) {
-  auto retcode = SCIPcreate(&scip_ptr_);
-
-  if (retcode != SCIP_OKAY) {
-    throw BadRetcodeException(retcode);
-  }
+  CHECK_RETCODE(SCIPcreate(&scip_ptr_));
+  CHECK_RETCODE(SCIPincludeDefaultPlugins(scip_ptr_));
 }
 
 Model::~Model() {
