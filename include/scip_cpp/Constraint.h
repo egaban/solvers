@@ -26,7 +26,7 @@ class Constraint {
 
   void add_contribution(double coefficient, const Variable& variable);
 
-  const std::list<Contribution>& get_contributions_(void) const {
+  const std::list<Contribution>& get_contributions(void) const {
     return contributions_;
   }
 };
