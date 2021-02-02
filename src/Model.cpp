@@ -13,6 +13,8 @@ Model::Model(ObjSense sense) : scip_ptr_(nullptr) {
   auto scip_objsense = (sense == ObjSense::Minimize) ? SCIP_OBJSENSE_MINIMIZE
                                                      : SCIP_OBJSENSE_MAXIMIZE;
 
+  // TODO: name parameter
+  CHECK_RETCODE(SCIPcreateProbBasic(scip_ptr_, "Scip problem"));
   CHECK_RETCODE(SCIPsetObjsense(scip_ptr_, scip_objsense));
 }
 
