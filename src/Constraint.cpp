@@ -16,8 +16,11 @@ Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
     : lhs_(lhs), rhs_(rhs), scip_cons_ptr_(nullptr) {
   assert(is_leq(lhs, rhs));
 
-  CHECK_RETCODE(SCIPcreateConsBasicLinear(scip, &scip_cons_ptr_, name.c_str(), 0,
-                                          nullptr, nullptr, lhs, rhs));
+  if (lhs_ == MinusInfinity) lhs_ = -SCIPinfinity(scip);
+  if (rhs_ == Infinity) rhs_ = SCIPinfinity(scip);
+
+  CHECK_RETCODE(SCIPcreateConsBasicLinear(scip, &scip_cons_ptr_, name.c_str(),
+                                          0, nullptr, nullptr, lhs_, rhs_));
   CHECK_RETCODE(SCIPaddCons(scip, scip_cons_ptr_));
 }
 

@@ -2,12 +2,17 @@
 
 #include <scip_cpp/Variable.h>
 
+#include <limits>
 #include <list>
 
 struct Scip;
 struct SCIP_Cons;
 
 namespace scip {
+
+constexpr auto MinusInfinity = std::numeric_limits<double>::min();
+constexpr auto Infinity = std::numeric_limits<double>::max();
+
 
 struct Contribution {
   double coefficient;
