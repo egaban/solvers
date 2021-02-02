@@ -10,6 +10,8 @@ struct Scip;
 
 namespace scip {
 
+enum class ObjSense { Minimize, Maximize };
+
 class Model {
  private:
   std::map<std::string, Constraint*> constraints_;
@@ -17,7 +19,7 @@ class Model {
   Scip* scip_ptr_;
 
  public:
-  Model(void);
+  Model(ObjSense sense);
   ~Model();
 
   void create_variable(VariableType type, double objective_value,

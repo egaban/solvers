@@ -6,9 +6,14 @@
 
 namespace scip {
 
-Model::Model(void) : scip_ptr_(nullptr) {
+Model::Model(ObjSense sense) : scip_ptr_(nullptr) {
   CHECK_RETCODE(SCIPcreate(&scip_ptr_));
   CHECK_RETCODE(SCIPincludeDefaultPlugins(scip_ptr_));
+
+  auto scip_objsense = (sense == ObjSense::Minimize) ? SCIP_OBJSENSE_MINIMIZE
+                                                     : SCIP_OBJSENSE_MAXIMIZE;
+
+  CHECK_RETCODE(SCIPsetObjsense(scip_ptr_, scip_objsense));
 }
 
 Model::~Model() {
