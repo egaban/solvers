@@ -27,6 +27,8 @@ class Variable {
   Variable(Scip* scip, VariableType type, double objective_value,
            double lower_bound, double upper_bound, const std::string& name);
 
+  SCIP_Var* get_scip_pointer(void) const { return scip_var_ptr_; }
+
  private:
   static SCIP_Vartype convert_to_scip_vartype(VariableType t);
 };

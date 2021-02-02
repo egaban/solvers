@@ -1,4 +1,5 @@
 #include <scip/scip.h>
+#include <scip/scipdefplugins.h>
 #include <scip_cpp/Model.h>
 
 #include "Common.h"
@@ -50,6 +51,27 @@ void Model::add_contribution_to_constraint(const std::string& variable_name,
   auto constraint = get_constraint(constraint_name);
 
   constraint.add_contribution(coefficient, variable);
+}
+
+void Model::solve(void) {
+  load_all_contributions();
+  CHECK_RETCODE(SCIPsolve(scip_ptr_));
+}
+
+void Model::load_all_contributions(void) {
+  for (auto& cons : constraints_) {
+    load_constraint_contributions(*(cons.second));
+  }
+}
+
+void Model::load_constraint_contributions(const Constraint& constraint) {
+  auto cons_ptr = constraint.get_scip_ptr();
+
+  for (const auto& contribution : constraint.get_contributions()) {
+    auto var_ptr = contribution.variable.get_scip_pointer();
+    auto coef = contribution.coefficient;
+    CHECK_RETCODE(SCIPaddCoefLinear(scip_ptr_, cons_ptr, var_ptr, coef));
+  }
 }
 
 }  // namespace scip

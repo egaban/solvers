@@ -45,6 +45,11 @@ class Model {
     return *(variables_.at(name));
   }
 
+  void solve(void);
+
+ private:
+  void load_all_contributions(void);
+  void load_constraint_contributions(const Constraint& constraint);
 };
 
 }  // namespace scip
