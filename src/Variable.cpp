@@ -6,7 +6,7 @@
 
 namespace scip {
 
-static SCIP_Vartype convert_to_scip_vartype(VariableType t) {
+SCIP_Vartype Variable::convert_to_scip_vartype(VariableType t) {
   switch (t) {
     case VariableType::Binary:
       return SCIP_VARTYPE_BINARY;

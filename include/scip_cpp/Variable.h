@@ -1,5 +1,7 @@
 #pragma once
 
+#include <scip/type_var.h>
+
 #include <string>
 
 struct Scip;
@@ -24,6 +26,9 @@ class Variable {
  public:
   Variable(Scip* scip, VariableType type, double objective_value,
            double lower_bound, double upper_bound, const std::string& name);
+
+ private:
+  static SCIP_Vartype convert_to_scip_vartype(VariableType t);
 };
 
 }  // namespace scip
