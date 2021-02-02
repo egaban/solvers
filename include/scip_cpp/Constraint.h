@@ -16,10 +16,10 @@ struct Contribution {
 
 class Constraint {
  private:
-  double lhs_;
-  double rhs_;
-  std::list<Contribution> contributions_;
-  SCIP_Cons* scip_cons_ptr_;
+  double lhs_;                             // Lefthand side
+  double rhs_;                             // Righthand side
+  std::list<Contribution> contributions_;  // Contribution list
+  SCIP_Cons* scip_cons_ptr_;               // Pointer to scip constraint struct
 
  public:
   Constraint(Scip* scip, const std::string& name, double lhs, double rhs);
