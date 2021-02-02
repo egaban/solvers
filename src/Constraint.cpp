@@ -1,10 +1,9 @@
-#include <assert.h>
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Constraint.h>
 #include <scip_cpp/Exception.h>
 
-constexpr auto epsilon = 1e-5;
+#include "Core.h"
 
 namespace scip {
 
@@ -16,7 +15,7 @@ void Constraint::add_contribution(double coefficient,
 Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
                        double rhs)
     : lhs_(lhs), rhs_(rhs), scip_ptr_(nullptr) {
-  assert(rhs - lhs >= -epsilon);
+  assert(are_real_equals(lhs, rhs));
 
   auto retcode = SCIPcreateConsBasicLinear(scip, &scip_ptr_, name.c_str(), 0,
                                            nullptr, nullptr, lhs, rhs);
