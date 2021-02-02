@@ -1,6 +1,5 @@
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
-#include <scip_cpp/Exception.h>
 #include <scip_cpp/Variable.h>
 
 #include "Common.h"

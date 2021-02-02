@@ -9,6 +9,8 @@
 
 #include <assert.h>
 
+#include <scip_cpp/Exception.h>
+
 namespace scip {
 
 constexpr double epsilon = 1e-5;

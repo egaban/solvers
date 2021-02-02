@@ -1,7 +1,6 @@
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Constraint.h>
-#include <scip_cpp/Exception.h>
 
 #include "Common.h"
 
