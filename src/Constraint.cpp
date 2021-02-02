@@ -3,7 +3,7 @@
 #include <scip_cpp/Constraint.h>
 #include <scip_cpp/Exception.h>
 
-#include "Core.h"
+#include "Common.h"
 
 namespace scip {
 

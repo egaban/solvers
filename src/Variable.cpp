@@ -1,8 +1,9 @@
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
+#include <scip_cpp/Exception.h>
 #include <scip_cpp/Variable.h>
 
-#include <scip_cpp/Exception.h>
+#include "Common.h"
 
 namespace scip {
 
@@ -27,6 +28,8 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
       lb_(lower_bound),
       ub_(upper_bound),
       scip_var_ptr_(nullptr) {
+  assert(is_leq(lb_, ub_));
+
   auto scip_vartype = convert_to_scip_vartype(type);
 
   SCIPcreateVarBasic(scip, &scip_var_ptr_, name.c_str(), lb_, ub_, obj_,
