@@ -24,6 +24,8 @@ class Model {
                        double lower_bound, double upper_bound,
                        const std::string& name);
 
+  void create_constraint(double lhs, double rhs, const std::string& name);
+
  private:
 };
 
