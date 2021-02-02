@@ -1,7 +1,6 @@
 #include <scip/scip.h>
+#include <scip_cpp/Exception.h>
 #include <scip_cpp/Model.h>
-
-#include "Exception.h"
 
 namespace scip {
 

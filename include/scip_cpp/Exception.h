@@ -1,6 +1,6 @@
 #pragma once
 
-#include <scip/scip.h>
+#include <scip/type_retcode.h>
 
 #include <exception>
 #include <string>

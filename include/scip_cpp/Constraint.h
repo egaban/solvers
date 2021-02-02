@@ -4,6 +4,9 @@
 
 #include <list>
 
+struct Scip;
+struct SCIP_Cons;
+
 namespace scip {
 
 struct Contribution {
@@ -16,9 +19,10 @@ class Constraint {
   double lhs_;
   double rhs_;
   std::list<Contribution> contributions_;
+  SCIP_Cons* scip_ptr_;
 
  public:
-  Constraint(double lhs, double rhs);
+  Constraint(Scip* scip, const std::string& name, double lhs, double rhs);
 
   void add_contribution(double coefficient, const Variable& variable);
 

@@ -1,4 +1,4 @@
-#include "Exception.h"
+#include <scip_cpp/Exception.h>
 
 namespace scip {
 

@@ -2,7 +2,7 @@
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Variable.h>
 
-#include "Exception.h"
+#include <scip_cpp/Exception.h>
 
 namespace scip {
 
