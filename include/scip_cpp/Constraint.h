@@ -28,6 +28,7 @@ class Constraint {
 
  public:
   Constraint(Scip* scip, const std::string& name, double lhs, double rhs);
+  ~Constraint();
 
   void add_contribution(double coefficient, const Variable& variable);
 

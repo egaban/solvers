@@ -24,4 +24,8 @@ Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
   CHECK_RETCODE(SCIPaddCons(scip, scip_cons_ptr_));
 }
 
+Constraint::~Constraint() {
+  SCIPreleaseCons(scip_ptr_, &scip_cons_ptr_);
+}
+
 }  // namespace scip

@@ -38,4 +38,8 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
   CHECK_RETCODE(SCIPaddVar(scip, scip_var_ptr_));
 }
 
+Variable::~Variable() {
+  SCIPreleaseVar(scip_ptr_, &scip_var_ptr_);
+}
+
 }  // namespace scip
