@@ -17,8 +17,10 @@ find_package(scip REQUIRED
 target_include_directories(scip_cpp
   PUBLIC
     include/
-  PRIVATE
     ${SCIP_INCLUDE_DIRS}
 )
 
 target_link_libraries(scip_cpp ${SCIP_LIBRARIES})
+
+add_executable(knapsack tests/knapsack.cpp)
+target_link_libraries(knapsack scip_cpp)
