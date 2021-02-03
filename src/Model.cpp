@@ -51,8 +51,8 @@ void Model::create_constraint(double lhs, double rhs, const std::string& name) {
 void Model::add_contribution_to_constraint(const std::string& variable_name,
                                            double coefficient,
                                            const std::string& constraint_name) {
-  auto variable = get_variable(variable_name);
-  auto constraint = get_constraint(constraint_name);
+  auto& variable = get_variable(variable_name);
+  auto& constraint = get_constraint(constraint_name);
 
   constraint.add_contribution(coefficient, variable);
 }
