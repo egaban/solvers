@@ -59,6 +59,11 @@ void Model::add_contribution_to_constraint(const std::string& variable_name,
 
 void Model::solve(void) {
   load_all_contributions();
+
+#ifdef DEBUG_MODEL
+  CHECK_RETCODE(SCIPwriteOrigProblem(scip_ptr_, "teste.lp", "lp", FALSE));
+#endif
+
   CHECK_RETCODE(SCIPsolve(scip_ptr_));
 }
 
