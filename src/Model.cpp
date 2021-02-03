@@ -69,10 +69,10 @@ void Model::load_all_contributions(void) {
 }
 
 void Model::load_constraint_contributions(const Constraint& constraint) {
-  auto cons_ptr = constraint.get_scip_ptr();
+  auto cons_ptr = constraint.get_scipcons_ptr();
 
   for (const auto& contribution : constraint.get_contributions()) {
-    auto var_ptr = contribution.variable.get_scip_pointer();
+    auto var_ptr = contribution.variable.get_scipvar_pointer();
     auto coef = contribution.coefficient;
     CHECK_RETCODE(SCIPaddCoefLinear(scip_ptr_, cons_ptr, var_ptr, coef));
   }

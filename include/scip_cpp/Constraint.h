@@ -13,7 +13,6 @@ namespace scip {
 constexpr auto MinusInfinity = std::numeric_limits<double>::min();
 constexpr auto Infinity = std::numeric_limits<double>::max();
 
-
 struct Contribution {
   double coefficient;
   Variable const& variable;
@@ -24,6 +23,7 @@ class Constraint {
   double lhs_;                             // Lefthand side
   double rhs_;                             // Righthand side
   std::list<Contribution> contributions_;  // Contribution list
+  Scip* scip_ptr_;                         // Pointer to scip main struct
   SCIP_Cons* scip_cons_ptr_;               // Pointer to scip constraint struct
 
  public:
@@ -35,7 +35,7 @@ class Constraint {
     return contributions_;
   }
 
-  SCIP_Cons* get_scip_ptr(void) const { return scip_cons_ptr_; }
+  SCIP_Cons* get_scipcons_ptr(void) const { return scip_cons_ptr_; }
 };
 
 }  // namespace scip

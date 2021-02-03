@@ -26,6 +26,7 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
       obj_(objective_value),
       lb_(lower_bound),
       ub_(upper_bound),
+      scip_ptr_(scip),
       scip_var_ptr_(nullptr) {
   assert(is_leq(lb_, ub_));
 
