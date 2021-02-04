@@ -6,6 +6,7 @@ add_library(scip_cpp
   src/Constraint.cpp
   src/Exception.cpp
   src/Model.cpp
+  src/Solution.cpp
   src/Variable.cpp
 )
 
