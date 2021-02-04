@@ -10,6 +10,11 @@ add_library(scip_cpp
   src/Variable.cpp
 )
 
+set_property(
+  TARGET scip_cpp
+  PROPERTY CXX_STANDARD 17
+)
+
 find_package(scip REQUIRED
   HINTS
     /usr/local/scipoptsuite-6.0.2/build
