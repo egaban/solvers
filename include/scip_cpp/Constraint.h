@@ -1,5 +1,6 @@
 #pragma once
 
+#include <scip_cpp/Common.h>
 #include <scip_cpp/Variable.h>
 
 #include <limits>

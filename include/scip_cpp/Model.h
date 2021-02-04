@@ -1,10 +1,8 @@
 #pragma once
 
+#include <scip_cpp/Common.h>
 #include <scip_cpp/Constraint.h>
 #include <scip_cpp/Variable.h>
-
-#include <map>
-#include <string>
 
 struct Scip;
 
@@ -14,8 +12,8 @@ enum class ObjSense { Minimize, Maximize };
 
 class Model {
  private:
-  std::map<std::string, Constraint*> constraints_;
-  std::map<std::string, Variable const*> variables_;
+  Map<Constraint*> constraints_;
+  Map<Variable const*> variables_;
   Scip* scip_ptr_;
 
  public:

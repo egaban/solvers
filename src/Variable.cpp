@@ -2,8 +2,6 @@
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Variable.h>
 
-#include "Common.h"
-
 namespace scip {
 
 SCIP_Vartype Variable::convert_to_scip_vartype(VariableType t) {

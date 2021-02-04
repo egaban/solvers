@@ -2,8 +2,6 @@
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Model.h>
 
-#include "Common.h"
-
 namespace scip {
 
 Model::Model(ObjSense sense) : scip_ptr_(nullptr) {

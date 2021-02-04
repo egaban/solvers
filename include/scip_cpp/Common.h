@@ -10,6 +10,9 @@
 #include <assert.h>
 #include <scip_cpp/Exception.h>
 
+#include <map>
+#include <string>
+
 #define CHECK_RETCODE(f)                                            \
   {                                                                 \
     SCIP_RETCODE _retcode = f;                                      \
@@ -32,5 +35,8 @@ template <typename T>
 constexpr bool is_leq(T a, T b) {
   return b - a >= -epsilon;
 }
+
+template <typename T>
+using Map = std::map<std::string, T>;
 
 }  // namespace scip

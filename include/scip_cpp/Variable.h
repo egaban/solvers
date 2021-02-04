@@ -1,11 +1,11 @@
 #pragma once
 
 #include <scip/type_var.h>
-
-#include <string>
+#include <scip_cpp/Common.h>
 
 struct Scip;
 struct SCIP_Var;
+struct SCIP_Sol;
 
 namespace scip {
 

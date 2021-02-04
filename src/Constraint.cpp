@@ -2,8 +2,6 @@
 #include <scip/scipdefplugins.h>
 #include <scip_cpp/Constraint.h>
 
-#include "Common.h"
-
 namespace scip {
 
 void Constraint::add_contribution(double coefficient,
