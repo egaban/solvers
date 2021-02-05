@@ -2,6 +2,7 @@
 
 #include <scip_cpp/Common.h>
 #include <scip_cpp/Constraint.h>
+#include <scip_cpp/Solution.h>
 #include <scip_cpp/Variable.h>
 
 struct Scip;
@@ -46,6 +47,10 @@ class Model {
   }
 
   void solve(void);
+
+  Solution get_best_solution(void) const;
+
+  bool has_feasible_solutions(void) const;
 
  private:
   void load_all_contributions(void);

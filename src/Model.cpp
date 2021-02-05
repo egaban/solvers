@@ -81,4 +81,14 @@ void Model::load_constraint_contributions(const Constraint& constraint) {
   }
 }
 
+bool Model::has_feasible_solutions(void) const {
+  return SCIPgetNSolsFound(scip_ptr_) > 0;
+}
+
+Solution Model::get_best_solution(void) const {
+  assert(has_feasible_solutions());
+  auto scip_solution = SCIPgetBestSol(scip_ptr_);
+  return Solution{scip_ptr_, scip_solution, variables_};
+}
+
 }  // namespace scip
