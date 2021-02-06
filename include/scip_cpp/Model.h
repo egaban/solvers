@@ -21,11 +21,28 @@ class Model {
   Model(ObjSense sense);
   ~Model();
 
-  void create_variable(VariableType type, double objective_value,
-                       double lower_bound, double upper_bound,
-                       const std::string& name);
+  /**
+   * @brief Creates and adds a variable to the model.
+   *
+   * @param type Variable type
+   * @param objective_value Variable coefficient at objective function
+   * @param lower_bound Variable lower bound
+   * @param upper_bound Variable upper bound
+   * @param name Variable name
+   */
+  void CreateVariable(VariableType type, double objective_value,
+                      double lower_bound, double upper_bound,
+                      const std::string& name);
 
-  void create_constraint(double lhs, double rhs, const std::string& name);
+  /**
+   * @brief Creates and adds a constraint to the model. lhs <= constraint <=
+   * rhs.
+   *
+   * @param lhs Lefthand side
+   * @param rhs Righthand side
+   * @param name Constraint name
+   */
+  void CreateConstraint(double lhs, double rhs, const std::string& name);
 
   /**
    * @brief Adds a variable contribution to constraint.
@@ -34,23 +51,23 @@ class Model {
    * @param coefficient variable coefficient
    * @param constraint_name constraint
    */
-  void add_contribution_to_constraint(const std::string& variable_name,
-                                      double coefficient,
-                                      const std::string& constraint_name);
+  void AddContributionToConstraint(const std::string& variable_name,
+                                   double coefficient,
+                                   const std::string& constraint_name);
 
-  Constraint& get_constraint(const std::string& name) {
+  Constraint& GetConstraint(const std::string& name) {
     return *(constraints_.at(name));
   }
 
-  const Variable& get_variable(const std::string& name) const {
+  const Variable& GetVariable(const std::string& name) const {
     return *(variables_.at(name));
   }
 
-  void solve(void);
+  void Solve(void);
 
-  Solution get_best_solution(void) const;
+  Solution GetBestSolution(void) const;
 
-  bool has_feasible_solutions(void) const;
+  bool HasFeasibleSolutions(void) const;
 };
 
 }  // namespace scip

@@ -37,16 +37,16 @@ int main(int argc, char** argv) {
 
   Instance instance = read_instance(input);
 
-  model.create_constraint(scip::MinusInfinity, instance.W, "(1)");
+  model.CreateConstraint(scip::MinusInfinity, instance.W, "(1)");
 
   for (int i = 0; i < instance.n; ++i) {
     auto var_name = "X" + std::to_string(i);
-    model.create_variable(scip::VariableType::Binary, instance.v[i], 0, 1,
+    model.CreateVariable(scip::VariableType::Binary, instance.v[i], 0, 1,
                           var_name);
-    model.add_contribution_to_constraint(var_name, instance.w[i], "(1)");
+    model.AddContributionToConstraint(var_name, instance.w[i], "(1)");
   }
 
-  model.solve();
+  model.Solve();
 
   return 0;
 }

@@ -16,15 +16,15 @@ class Solution {
  public:
   Solution(Scip* scip, SCIP_Sol* sol, const Map<Variable const*>& variables);
 
-  double get_objective_value(void) const { return objective_value_; }
+  double GetObjectiveValue(void) const { return objective_value_; }
 
-  double get_variable_value(const std::string& name) const {
+  double GetVariableValue(const std::string& name) const {
     return variable_values_.at(name);
   }
 
  private:
-  void load_all_values(Scip* scip, SCIP_Sol* sol,
-                       const Map<Variable const*>& variables);
+  void LoadAllValues(Scip* scip, SCIP_Sol* sol,
+                     const Map<Variable const*>& variables);
 };
 
 }  // namespace scip

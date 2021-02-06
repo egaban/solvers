@@ -23,9 +23,9 @@ Model::~Model() {
   SCIPfree(&scip_ptr_);
 }
 
-void Model::create_variable(VariableType type, double objective_value,
-                            double lower_bound, double upper_bound,
-                            const std::string& name) {
+void Model::CreateVariable(VariableType type, double objective_value,
+                           double lower_bound, double upper_bound,
+                           const std::string& name) {
 #ifndef NDEBUG
   if (variables_.find(name) != variables_.end()) {
     throw ScipException("Variable with name " + name + " already exists.\n");
@@ -36,7 +36,7 @@ void Model::create_variable(VariableType type, double objective_value,
                                   upper_bound, name);
 }
 
-void Model::create_constraint(double lhs, double rhs, const std::string& name) {
+void Model::CreateConstraint(double lhs, double rhs, const std::string& name) {
 #ifndef NDEBUG
   if (constraints_.find(name) != constraints_.end()) {
     throw ScipException("Constraint with name " + name + " already exists.\n");
@@ -46,16 +46,16 @@ void Model::create_constraint(double lhs, double rhs, const std::string& name) {
   constraints_[name] = new Constraint(scip_ptr_, name, lhs, rhs);
 }
 
-void Model::add_contribution_to_constraint(const std::string& variable_name,
-                                           double coefficient,
-                                           const std::string& constraint_name) {
-  auto& variable = get_variable(variable_name);
-  auto& constraint = get_constraint(constraint_name);
+void Model::AddContributionToConstraint(const std::string& variable_name,
+                                        double coefficient,
+                                        const std::string& constraint_name) {
+  auto& variable = GetVariable(variable_name);
+  auto& constraint = GetConstraint(constraint_name);
 
   constraint.AddVariableContribution(variable, coefficient);
 }
 
-void Model::solve(void) {
+void Model::Solve(void) {
 #ifdef DEBUG_MODEL
   CHECK_RETCODE(SCIPwriteOrigProblem(scip_ptr_, "teste.lp", "lp", FALSE));
 #endif
@@ -63,12 +63,12 @@ void Model::solve(void) {
   CHECK_RETCODE(SCIPsolve(scip_ptr_));
 }
 
-bool Model::has_feasible_solutions(void) const {
+bool Model::HasFeasibleSolutions(void) const {
   return SCIPgetNSolsFound(scip_ptr_) > 0;
 }
 
-Solution Model::get_best_solution(void) const {
-  assert(has_feasible_solutions());
+Solution Model::GetBestSolution(void) const {
+  assert(HasFeasibleSolutions());
   auto scip_solution = SCIPgetBestSol(scip_ptr_);
   return Solution{scip_ptr_, scip_solution, variables_};
 }

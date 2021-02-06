@@ -21,7 +21,7 @@ Constraint::~Constraint() { SCIPreleaseCons(scip_ptr_, &scip_cons_ptr_); }
 
 void Constraint::AddVariableContribution(const Variable& variable,
                                          double coefficient) {
-  auto var_ptr = variable.get_scipvar_pointer();
+  auto var_ptr = variable.GetScipvarPointer();
   CHECK_RETCODE(
       SCIPaddCoefLinear(scip_ptr_, scip_cons_ptr_, var_ptr, coefficient));
 }

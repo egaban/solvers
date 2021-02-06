@@ -4,7 +4,7 @@
 
 namespace scip {
 
-SCIP_Vartype Variable::convert_to_scip_vartype(VariableType t) {
+SCIP_Vartype Variable::ConvertToScipVartype(VariableType t) {
   switch (t) {
     case VariableType::Binary:
       return SCIP_VARTYPE_BINARY;
@@ -28,7 +28,7 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
       scip_var_ptr_(nullptr) {
   assert(is_leq(lb_, ub_));
 
-  auto scip_vartype = convert_to_scip_vartype(type);
+  auto scip_vartype = ConvertToScipVartype(type);
 
   CHECK_RETCODE(SCIPcreateVarBasic(scip, &scip_var_ptr_, name.c_str(), lb_, ub_,
                                    obj_, scip_vartype));
@@ -36,8 +36,6 @@ Variable::Variable(Scip* scip, VariableType type, double objective_value,
   CHECK_RETCODE(SCIPaddVar(scip, scip_var_ptr_));
 }
 
-Variable::~Variable() {
-  SCIPreleaseVar(scip_ptr_, &scip_var_ptr_);
-}
+Variable::~Variable() { SCIPreleaseVar(scip_ptr_, &scip_var_ptr_); }
 
 }  // namespace scip

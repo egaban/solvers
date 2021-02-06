@@ -29,10 +29,10 @@ class Variable {
            double lower_bound, double upper_bound, const std::string& name);
   ~Variable();
 
-  SCIP_Var* get_scipvar_pointer(void) const { return scip_var_ptr_; }
+  SCIP_Var* GetScipvarPointer(void) const { return scip_var_ptr_; }
 
  private:
-  static SCIP_Vartype convert_to_scip_vartype(VariableType t);
+  static SCIP_Vartype ConvertToScipVartype(VariableType t);
 };
 
 }  // namespace scip
