@@ -4,11 +4,6 @@
 
 namespace scip {
 
-void Constraint::add_contribution(double coefficient,
-                                  const Variable& variable) {
-  contributions_.push_back({coefficient, variable});
-}
-
 Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
                        double rhs)
     : lhs_(lhs), rhs_(rhs), scip_ptr_(scip), scip_cons_ptr_(nullptr) {
@@ -22,8 +17,13 @@ Constraint::Constraint(Scip* scip, const std::string& name, double lhs,
   CHECK_RETCODE(SCIPaddCons(scip, scip_cons_ptr_));
 }
 
-Constraint::~Constraint() {
-  SCIPreleaseCons(scip_ptr_, &scip_cons_ptr_);
+Constraint::~Constraint() { SCIPreleaseCons(scip_ptr_, &scip_cons_ptr_); }
+
+void Constraint::AddVariableContribution(const Variable& variable,
+                                         double coefficient) {
+  auto var_ptr = variable.get_scipvar_pointer();
+  CHECK_RETCODE(
+      SCIPaddCoefLinear(scip_ptr_, scip_cons_ptr_, var_ptr, coefficient));
 }
 
 }  // namespace scip

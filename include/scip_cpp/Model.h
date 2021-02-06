@@ -51,10 +51,6 @@ class Model {
   Solution get_best_solution(void) const;
 
   bool has_feasible_solutions(void) const;
-
- private:
-  void load_all_contributions(void);
-  void load_constraint_contributions(const Constraint& constraint);
 };
 
 }  // namespace scip
