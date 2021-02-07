@@ -16,8 +16,15 @@ class Solution {
  public:
   Solution(Scip* scip, SCIP_Sol* sol, const Map<Variable const*>& variables);
 
+  /**
+   * @return This solution's objective function value
+   */
   double GetObjectiveValue(void) const { return objective_value_; }
 
+  /**
+   * @param name Variable name
+   * @return The variable value on the solution
+   */
   double GetVariableValue(const std::string& name) const {
     return variable_values_.at(name);
   }

@@ -22,7 +22,8 @@ class Model {
   ~Model();
 
   /**
-   * @brief Creates and adds a variable to the model.
+   * @brief Creates and adds a variable to the model. The variable name must be
+   * unique.
    *
    * @param type Variable type
    * @param objective_value Variable coefficient at objective function
@@ -36,7 +37,7 @@ class Model {
 
   /**
    * @brief Creates and adds a constraint to the model. lhs <= constraint <=
-   * rhs.
+   * rhs. The constraint name must be unique.
    *
    * @param lhs Lefthand side
    * @param rhs Righthand side

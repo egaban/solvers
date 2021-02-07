@@ -5,7 +5,6 @@
 
 struct Scip;
 struct SCIP_Var;
-struct SCIP_Sol;
 
 namespace scip {
 
