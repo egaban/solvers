@@ -27,6 +27,13 @@ class Constraint {
 
   SCIP_Cons* GetScipconsPointer(void) const { return scip_cons_ptr_; }
 
+  /**
+   * @brief Adds a variable to this constraint, given the variable and
+   * coefficient.
+   *
+   * @param variable Variable reference
+   * @param coefficient Contribution coefficient
+   */
   void AddVariableContribution(const Variable& variable, double coefficient);
 };
 
