@@ -68,6 +68,10 @@ class Model {
   Solution GetBestSolution(void) const;
 
   bool HasFeasibleSolutions(void) const;
+
+ private:
+  bool HasConstraintWithName(const std::string& name) const;
+  bool HasVariableWithName(const std::string& name) const;
 };
 
 }  // namespace scip

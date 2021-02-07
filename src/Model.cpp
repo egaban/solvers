@@ -26,22 +26,14 @@ Model::~Model() {
 void Model::CreateVariable(VariableType type, double objective_value,
                            double lower_bound, double upper_bound,
                            const std::string& name) {
-#ifndef NDEBUG
-  if (variables_.find(name) != variables_.end()) {
-    throw ScipException("Variable with name " + name + " already exists.\n");
-  }
-#endif
+  assert(!HasVariableWithName(name));
 
   variables_[name] = new Variable(scip_ptr_, type, objective_value, lower_bound,
                                   upper_bound, name);
 }
 
 void Model::CreateConstraint(double lhs, double rhs, const std::string& name) {
-#ifndef NDEBUG
-  if (constraints_.find(name) != constraints_.end()) {
-    throw ScipException("Constraint with name " + name + " already exists.\n");
-  }
-#endif
+  assert(!HasConstraintWithName(name));
 
   constraints_[name] = new Constraint(scip_ptr_, name, lhs, rhs);
 }
@@ -71,6 +63,14 @@ Solution Model::GetBestSolution(void) const {
   assert(HasFeasibleSolutions());
   auto scip_solution = SCIPgetBestSol(scip_ptr_);
   return Solution{scip_ptr_, scip_solution, variables_};
+}
+
+bool Model::HasConstraintWithName(const std::string& name) const {
+  return constraints_.find(name) != constraints_.end();
+}
+
+bool Model::HasVariableWithName(const std::string& name) const {
+  return variables_.find(name) != variables_.end();
 }
 
 }  // namespace scip
