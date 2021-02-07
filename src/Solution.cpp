@@ -5,7 +5,7 @@ namespace scip {
 
 Solution::Solution(Scip* scip, SCIP_Sol* sol,
                    const Map<Variable const*>& variables)
-    : objective_value_(SCIPsolGetOrigObj(sol)) {
+    : objective_value_(SCIPgetSolOrigObj(scip, sol)) {
   LoadAllValues(scip, sol, variables);
 }
 
