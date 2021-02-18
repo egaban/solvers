@@ -70,6 +70,8 @@ class Model {
 
   bool HasFeasibleSolutions(void) const;
 
+  void DisableOutput(void);
+
  private:
   bool HasConstraintWithName(const std::string& name) const;
   bool HasVariableWithName(const std::string& name) const;

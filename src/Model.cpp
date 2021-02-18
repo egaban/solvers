@@ -73,4 +73,8 @@ bool Model::HasVariableWithName(const std::string& name) const {
   return variables_.find(name) != variables_.end();
 }
 
+void Model::DisableOutput(void) {
+  SCIPsetIntParam(scip_ptr_, "display/verblevel", 0);
+}
+
 }  // namespace scip
